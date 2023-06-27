@@ -52,8 +52,9 @@ class Room {
   }
 
   getItemByName(name) {
-
     // Fill this in
+    let found = this.items.find(item => item.name = name)
+    return found
 
   }
 
@@ -61,6 +62,7 @@ class Room {
 
     // Fill this in
 
+}
 }
 
 module.exports = {

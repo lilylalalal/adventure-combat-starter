@@ -1,13 +1,17 @@
 const {Character} = require('./character');
 const {Enemy} = require('./enemy');
-const {Food} = require('./food');
+const {Food} = require("./food");
 const {Room} = require('./room');
+const {Item} = require('./item');
 
 class Player extends Character {
 
   constructor(name, startingRoom) {
     super(name, "main character", startingRoom);
+    this.items =[]
+    this.health = 10
   }
+
 
   move(direction) {
 
@@ -36,11 +40,11 @@ class Player extends Character {
 
   takeItem(itemName) {
     // Fill this in
-    let tookitem = Room.getItemByName(itemName)
+    let tookitem = this.currentRoom.getItemByName(itemName)
     this.items.push(tookitem)
 
-    let filtered = Room.items.filter(item => item !== tookitem) 
-    Room.items =filtered
+    let filtered = this.currentRoom.items.filter(item => item !== tookitem) 
+    this.currentRoom.items =filtered
     return this.items
 
   }
@@ -48,7 +52,7 @@ class Player extends Character {
   dropItem(itemName) {
     // Fill this in
     let dropitem = this.getItemByName(itemName)
-    Room.items.push(dropitem)
+  this.currentRoom.items.push(dropitem)
 
     let filtered = this.items.filter(item => item !== dropitem) 
     this.items =filtered
@@ -63,28 +67,34 @@ class Player extends Character {
     if (eatitem.isFood == true){
       let filtered = this.items.filter(item => item !== eatitem) 
       this.items =filtered
-    return this.items
+    
     }
+    return this.items
 
 
   }
 
   getItemByName(name) {
     // Fill this in
-    let found = this.items.find(item => item.name = name)
+    let found = this.items.find(item => item.name === name)
     return found
 
   }
 
   hit(name) {
-
     // Fill this in
+    name.health -= 1
+    return name.health
 
   }
 
   die() {
-    console.log("You are dead!");
-    process.exit();
+    if( this.health <= o) {
+      console.log("You are dead!");
+      process.exit();
+
+    }
+    
   }
 
 }
@@ -92,3 +102,4 @@ class Player extends Character {
 module.exports = {
   Player,
 };
+

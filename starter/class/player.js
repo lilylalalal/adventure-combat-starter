@@ -83,13 +83,16 @@ class Player extends Character {
 
   hit(name) {
     // Fill this in
-    name.health -= 1
+    let enemy = this.currentRoom.getEnemyByName(name)
+    enemy.attackTarget = this
+    enemy.health -= 1
+    enemy.attack()
     return name.health
 
   }
 
   die() {
-    if( this.health <= o) {
+    if( this.health <= 0) {
       console.log("You are dead!");
       process.exit();
 

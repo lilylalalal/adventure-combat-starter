@@ -59,8 +59,8 @@ class Room {
   }
 
   getEnemyByName(name) {
-    let enemy = getEnemies()
-    let found = enemy.find(item => enemy.name === name)
+    let enemylist = this.getEnemies()
+    let found = enemylist.find(item => item.name === name)
     return found
 
     // Fill this in

@@ -1,15 +1,16 @@
 const {Character} = require('./character');
-const {Enemy} = require('./enemy');
+//const {Enemy} = require('./enemy');
 const {Food} = require("./food");
 const {Room} = require('./room');
 const {Item} = require('./item');
+
 
 class Player extends Character {
 
   constructor(name, startingRoom) {
     super(name, "main character", startingRoom);
     this.items =[]
-    this.health = 10
+    this.health = 100
   }
 
 
@@ -85,11 +86,21 @@ class Player extends Character {
     // Fill this in
     let enemy = this.currentRoom.getEnemyByName(name)
     enemy.attackTarget = this
-    enemy.health -= 1
-    enemy.attack()
-    return name.health
+    console.log("Goblin ",enemy.health)
+    if (enemy.health <= 0) {
+    console.log("Goblin is dead ")
+    process.exit();}
+    else{
+    enemy.applyDamage(10)
+    console.log("Goblin ", enemy.health)
+    if(enemy.health > 0) {
+    enemy.attack()}
+    else{
+      console.log("Goblin is dead ")
+      process.exit(); }}
+    }
 
-  }
+  
 
   die() {
     if( this.health <= 0) {
@@ -101,6 +112,7 @@ class Player extends Character {
   }
 
 }
+
 
 module.exports = {
   Player,

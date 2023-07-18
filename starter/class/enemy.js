@@ -17,7 +17,8 @@ class Enemy extends Character {
     this.health =100
     this.cooldown = 3000
     this.attackTarget = null
-    //this.player = null
+    this.randomMove()
+  
   
   }
 
@@ -28,6 +29,9 @@ class Enemy extends Character {
 
   randomMove() {
     // Fill this in
+    while (this.cooldown > 0) {
+      this.rest()}
+
     //go to any room in the world.roomlist
     let exitArr = this.currentRoom.getExits()
     //console.log('Exits: ',exitArr.join(", "))
@@ -38,14 +42,16 @@ class Enemy extends Character {
     let nextRoom = this.currentRoom.getRoomInDirection(direction);
    // if (nextRoom) {
     this.currentRoom = nextRoom;
-    this.cooldown =0
+    this.alert(`${this.name} moved ! `);
+    this.cooldown += 3000
+    return this.currentRoom
+  }
 
     //this.cooldown -= 1000
     //this.scratchNose()
-    return this.currentRoom
-
-    }
     
+
+  
   
 
   takeSandwich() {
@@ -62,41 +68,35 @@ class Enemy extends Character {
 
   rest() {
     // Wait until cooldown expires, then act
-    const resetCooldown = function() {
-      ;
-      this.cooldown = 0;
-      this.act;
+ 
+      this.cooldown -= 1000;
+      
     };
-    setTimeout(resetCooldown, this.cooldown);
-  }
+  
 
   attack() {
     // Fill this in
    // if(this.cooldown == 0){
     let amount =10
-    if( this.attackTarget<= 0) {
+    if( this.attackTarget.health<= 0) {
       return this.attackTarget.die()
     }else{
-  
+  if (this.cooldown ==0)
+  {
     console.log("player ", this.attackTarget.health)
 
     //this.attackTarget.health -= 10
     console.log("cooldown ", this.cooldown)
-    if (this.cooldown <= 0){
-     
     this.attackTarget.applyDamage(amount)
-
     console.log("player ", this.attackTarget.health)
     this.alert(`${this.name} hit you ! you got ${amount} damage. Your health is ${this.attackTarget.health}. `);
-    this.cooldown += 1000   
-    console.log("cooldown after hit ", this.cooldown)
-
-  } else{
-    if (this.cooldown >=1000){
-    this.scratchNose()
-    console.log("cooldown ", this.cooldown)}
-
+    this.cooldown += 3000
   }
+  else{
+    this.act()
+    console.log("pending for action ", this.cooldown)
+  }
+
 }}
   
   
@@ -112,27 +112,24 @@ class Enemy extends Character {
   }
 
   act() {
-    if (this.health <= 0) {
-      // Dead, do nothing;
-    } else if (this.cooldown < 0) {
-      this.rest();
-    } else {
-      this.scratchNose();
-      this.rest();
+     if (this.cooldown > 0) {
+      this.scratchNose.call(this,1000)
+      
+      this.rest() 
+
     }
   }
 
-  scratchNose(){
-    
-    this.cooldown -= 1000;
-
-    this.alert(`${this.name} scratches its nose`);
+  scratchNose(time) {
+    const fn = () => this.alert(`${this.name} scratches its nose`);
+    setTimeout(fn, time);
+  }
+  //the goblin scratching its nose every 3 seconds
+   
+   ;
 
   }
 
-
-
-}
 
 module.exports = {
   Enemy,

@@ -1,5 +1,5 @@
 const {Character} = require('./character');
-//const {Enemy} = require('./enemy');
+const {Enemy} = require('./enemy');
 const {Food} = require("./food");
 const {Room} = require('./room');
 const {Item} = require('./item');
@@ -15,16 +15,21 @@ class Player extends Character {
 
 
   move(direction) {
-
+    
     const nextRoom = this.currentRoom.getRoomInDirection(direction);
-
+    //const enemy =  this.currentRoom.getEnemies()
+    //console.log(enemy)
     // If the next room is valid, set the player to be in that room
     if (nextRoom) {
       this.currentRoom = nextRoom;
 
       nextRoom.printRoom(this);
+  
+
+
     } else {
       console.log("You cannot move in that direction");
+
     }
   }
 
@@ -85,20 +90,33 @@ class Player extends Character {
   hit(name) {
     // Fill this in
     let enemy = this.currentRoom.getEnemyByName(name)
+    if (enemy == undefined) {
+      console.log("it moved!")
+    }else{
     enemy.attackTarget = this
     console.log("Goblin ",enemy.health)
-    if (enemy.health <= 0) {
-    console.log("Goblin is dead ")
-    process.exit();}
-    else{
     enemy.applyDamage(10)
     console.log("Goblin ", enemy.health)
-    if(enemy.health > 0) {
-    enemy.attack()}
-    else{
-      console.log("Goblin is dead ")
-      process.exit(); }}
-    }
+
+    if(enemy.health >= 50) {
+    enemy.attack()
+        
+  }
+    else if (enemy.health < 50) {
+      enemy.attack()
+      
+      if(enemy.health <= 0){
+        console.log("Goblin is dead ")
+        process.exit(); }
+      else{
+        console.log("Goblin attack 2")
+        enemy.attack()
+        enemy.attack()
+        enemy.attack()
+        enemy.randomMove()
+        console.log("Goblin Moved")
+      }
+    }}}
 
   
 
@@ -110,7 +128,6 @@ class Player extends Character {
     }
     
   }
-
 }
 
 

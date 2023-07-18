@@ -73,9 +73,11 @@ class Player extends Character {
     if (eatitem.isFood == true){
       let filtered = this.items.filter(item => item !== eatitem) 
       this.items =filtered
+      this.health += 20
+      console.log("health recovered!")
     
     }
-    return this.items
+    return this.health
 
 
   }
@@ -94,27 +96,27 @@ class Player extends Character {
       console.log("it moved!")
     }else{
     enemy.attackTarget = this
-    console.log("Goblin ",enemy.health)
+    //console.log("Goblin ",enemy.health)
     enemy.applyDamage(10)
-    console.log("Goblin ", enemy.health)
+    //console.log("Goblin ", enemy.health)
 
-    if(enemy.health >= 50) {
+    if(enemy.health >= 80) {
     enemy.attack()
         
   }
-    else if (enemy.health < 50) {
+    else if (enemy.health < 80) {
       enemy.attack()
       
       if(enemy.health <= 0){
         console.log("Goblin is dead ")
         process.exit(); }
       else{
-        console.log("Goblin attack 2")
+        console.log("Goblin double attack!!")
         enemy.attack()
         enemy.attack()
         enemy.attack()
         enemy.randomMove()
-        console.log("Goblin Moved")
+        //console.log("Goblin Moved")
       }
     }}}
 

@@ -44,7 +44,15 @@ class Enemy extends Character {
     this.currentRoom = nextRoom;
     this.alert(`${this.name} moved ! `);
     this.cooldown += 3000
-    return this.currentRoom
+     this.currentRoom.items.forEach((item) =>{
+      if (item instanceof Food) {
+      
+      this.takeSandwich()}
+      else{
+        console.log("NO FOOD")
+      }})
+    
+   return this.currentRoom
   }
 
     //this.cooldown -= 1000
@@ -56,14 +64,24 @@ class Enemy extends Character {
 
   takeSandwich() {
     // Fill this in
+  
+    let sandwich = this.currentRoom.getItemByName("sandwich")
+    if  (sandwich.isFood == true){
+    this.items.push(sandwich )
+    let filtered = this.currentRoom.items.filter(item => item !== sandwich ) 
+    this.currentRoom.items =filtered
+    console.log("Enemy took the sandwich!")
+    return this.currentRoom.items
+    }
+
 
   }
 
   // Print the alert only if player is standing in the same room
   alert(message) {
-    if (this.player && this.player.currentRoom === this.currentRoom) {
+    //if (this.player && this.player.currentRoom === this.currentRoom) {
       console.log(message);
-    }
+    //}
   }
 
   rest() {

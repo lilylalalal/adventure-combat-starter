@@ -84,16 +84,17 @@ describe ('Food', function () {
 
 
   it('should have name and description attributes', function () {
-    let food = new Food("sandwich", "a delicious sandwich");
+    let food = new Food("sandwich", "a delicious sandwich",2);
 
     expect(food.name).to.equal("sandwich");
+    expect(food.addhealth).to.equal(2);
     expect(food.description).to.equal("a delicious sandwich");
 
   });
 
 
   it('should be an instance of Item and Food', function () {
-    let food = new Food("sandwich", "a delicious sandwich");
+    let food = new Food("sandwich", "a delicious sandwich",2);
     let item = new Item("rock", "just a simple rock");
 
     expect(food instanceof Item).to.be.true;
@@ -105,7 +106,7 @@ describe ('Food', function () {
 
 
   it('can be eaten by a player', function () {
-    let food = new Food("sandwich", "a delicious sandwich");
+    let food = new Food("sandwich", "a delicious sandwich",2);
     let room = new Room("Test Room", "A test room");
     let player = new Player("player", room);
 

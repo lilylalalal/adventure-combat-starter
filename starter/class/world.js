@@ -66,8 +66,8 @@ class World {
       let newItem;
 
       if (itemData.isFood) {
-        newItem = new Food(itemData.name, itemData.description);
-      } else {
+        newItem = new Food(itemData.name, itemData.description, itemData.addhealth)
+      }else{
         newItem = new Item(itemData.name, itemData.description);
       }
 

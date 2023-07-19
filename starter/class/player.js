@@ -71,10 +71,12 @@ class Player extends Character {
     // Fill this in
     let eatitem = this.getItemByName(itemName)
     if (eatitem.isFood == true){
+      eatitem.recoverhealth(this)
       let filtered = this.items.filter(item => item !== eatitem) 
       this.items =filtered
-      this.health += 20
-      console.log("health recovered!")
+      
+      console.log("health recovered!", this.health)
+      
     
     }
     return this.health
@@ -111,9 +113,10 @@ class Player extends Character {
         console.log("Goblin is dead ")
         process.exit(); }
       else{
-        console.log("Goblin double attack!!")
+        //console.log("Goblin attack!!")
+        enemy.cooldown ==0
         enemy.attack()
-        enemy.attack()
+        enemy.cooldown ==0
         enemy.attack()
         enemy.randomMove()
         //console.log("Goblin Moved")

@@ -140,7 +140,7 @@ describe ('Enemy', function () {
   beforeEach(function() {
     room = new Room("Test Room", "A test room");
     item = new Item("rock", "just a simple rock");
-    sandwich = new Food("sandwich", "a delicious looking sandwich");
+    sandwich = new Food("sandwich", "a delicious looking sandwich",2);
     enemy = new Enemy('enemy', 'an ordinary character', room);
     player = new Player("player", room);
 

@@ -27,11 +27,13 @@ function printHelp() {
 
 function startGame() {
   console.clear();
-  console.log("Welcome to App Academy Adventure!\n");
+  console.log("Welcome to Great Adventure!\n");
 
   rl.question('Please enter your name: ', (name) => {
     console.clear();
     console.log(`Hello, ${name}!\n`);
+
+    printHelp();
 
     // Create the world and player
     World.loadWorld(worldData, player);
@@ -39,7 +41,7 @@ function startGame() {
     World.setPlayer(player);
 
     // Show commands
-    printHelp();
+   
 
     rl.question('\nHit RETURN to start your adventure\n', () => {
 
@@ -54,7 +56,7 @@ function startGame() {
 
 function processCommand() {
 
-  rl.question('> ', (cmd) => {
+  rl.question('>>> ', (cmd) => {
     cmd = cmd.toLowerCase();
 
     if (cmd === 'h') {

@@ -10,25 +10,25 @@ module.exports = {
       id: 2,
       name: "Northern point",
       description: "You are standing at the north point of a crossroad. To the south, you see an empty intersection.",
-      exits: {s: 1}
+      exits: {s: 1,e: 3 , w:4}
     },
     {
       id: 3,
       name: "Eastern point",
       description: "You are standing at the east point of a crossroad. To the west, you see an empty intersection.",
-      exits: {w: 1}
+      exits: {w: 1,n: 2 ,s:5}
     },
     {
       id: 4,
       name: "Western point",
       description: "You are standing at the west point of a crossroad. To the east, you see an empty intersection.",
-      exits: {e: 1}
+      exits: {e: 1,n: 2, s:5}
     },
     {
       id: 5,
       name: "Southern point",
       description: "You are standing at the south point of a crossroad. To the north, you see an empty intersection.",
-      exits: {n: 1}
+      exits: {n: 1,e: 3 , w:4}
     }
   ],
   items: [
@@ -41,13 +41,16 @@ module.exports = {
       name: "sandwich",
       description: "A tasty looking sandwich",
       room: 2,
+      addhealth: 2,
       isFood: true
     },
     {
       name: "sandwich",
       description: "A tasty looking sandwich",
       room: 4,
+      addhealth: 2,
       isFood: true
+      
     }
   ],
   enemies: [
@@ -56,5 +59,24 @@ module.exports = {
       description: "A mean-looking goblin",
       room: 3
     },
-  ]
+  ],
+  shop: [
+    {
+      name: "rock knife",
+      description: "wepoen",
+      strength: 10 
+    },
+    {
+      name: "Baboo knife",
+      description: "weapon",
+      strength: 2
+    },
+    {
+      name: "remedy",
+      description: "recover one's health",
+      isFood: true,
+      health :100
+    }
+  ],
+
 }

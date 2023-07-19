@@ -5,12 +5,12 @@ const {Food} = require("./food");
 
 class Character {
 
-  constructor(name, description, currentRoom) {
+  constructor(name, description, currentRoom,items =[]) {
     // Fill this in
     this.name = name
     this.description =description
     this.currentRoom = currentRoom
-    this.items = []
+    this.items = items
     this.strength =10
     this.health =100
     

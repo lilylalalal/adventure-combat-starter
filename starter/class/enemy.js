@@ -9,10 +9,10 @@ const {Character} = require('./character');
 
 
 class Enemy extends Character {
-  constructor(name, description, currentRoom) {
-    super(name, description, currentRoom )
+  constructor(name, description, currentRoom,items) {
+    super(name, description, currentRoom,items )
     // Fill this in
-    this.items = []
+    
     this.strength =10
     this.health =100
     this.cooldown = 3000
@@ -101,18 +101,17 @@ class Enemy extends Character {
     }else{
   if (this.cooldown ==0)
   {
-    console.log("player ", this.attackTarget.health)
+    //console.log("player ", this.attackTarget.health)
 
-    //this.attackTarget.health -= 10
-    console.log("cooldown ", this.cooldown)
+    //console.log("cooldown ", this.cooldown)
     this.attackTarget.applyDamage(amount)
-    console.log("player ", this.attackTarget.health)
+    //console.log("player ", this.attackTarget.health)
     this.alert(`${this.name} hit you ! you got ${amount} damage. Your health is ${this.attackTarget.health}. `);
-    this.cooldown += 3000
+    this.cooldown += 1000
   }
   else{
     this.act()
-    console.log("pending for action ", this.cooldown)
+    console.log("Charging for Attack !!!")
   }
 
 }}

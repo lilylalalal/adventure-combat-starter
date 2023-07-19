@@ -1,6 +1,6 @@
-# App Academy Adventure Combat
+# Great Adventure Combat
 
-Welcome to App Academy Adventure! For this project, you will be extending your
+Welcome to Great Adventure! For this project, you will be extending your
 original adventure game with an enemy class and asynchronous combat.
 
 ## Running the code

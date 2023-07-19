@@ -23,7 +23,7 @@ class Character {
     if (this.health > 0){
     return this.health 
   } else{
-    this.health = 0
+    this.health <= 0
     return this.die()
   }}
 

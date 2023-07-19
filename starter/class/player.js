@@ -116,7 +116,6 @@ class Player extends Character {
         //console.log("Goblin attack!!")
         enemy.cooldown ==0
         enemy.attack()
-        enemy.cooldown ==0
         enemy.attack()
         enemy.randomMove()
         //console.log("Goblin Moved")

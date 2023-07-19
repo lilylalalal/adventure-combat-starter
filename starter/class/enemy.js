@@ -112,21 +112,22 @@ class Enemy extends Character {
   else{
     this.act()
     console.log("Charging for Attack !!!")
+    this.act()
   }
 
 }}
   
   
 
-  applyDamage(amount) {
+//  applyDamage(amount) {
     // Fill this in
    
-    this.health -= amount
+  //  this.health -= amount
 
     //this.cooldown += 1000
     //scratchNose()
-    return this.health
-  }
+    //return this.health
+ // }
 
   act() {
      if (this.cooldown > 0) {

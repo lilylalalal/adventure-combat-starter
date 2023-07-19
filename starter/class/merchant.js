@@ -5,14 +5,14 @@ const {Character} = require('./character');
 
 class Merchant extends Character {
     constructor(name, description, currentRoom) {
-        super(name, description, currentRoom )
+        super(name, description, currentRoom ,shop =[])
         // Fill this in
-        this.items = []
-
-        //this.randomMove()
-      
+        this.shop = shop
       
       }
+      //randomMove()
+
+      //sell()
 
 
 }
